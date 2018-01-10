@@ -1,4 +1,8 @@
-package com.mry.reflect;
+package com.mry.base;
+
+import com.mry.annotate.Mryautowired;
+import com.mry.annotate.MyAnnotate;
+import com.mry.proxy.Xhh;
 
 public class Mry {
 
@@ -7,15 +11,23 @@ public class Mry {
 	private String address;
 
 	private String age;
+	
+	@Mryautowired
+	private Xhh xhh;
 
 	
 	public Mry(){};
 	
+	@MyAnnotate
 	public Mry(String name, String address, String age) {
 		super();
 		this.name = name;
 		this.address = address;
 		this.age = age;
+	}
+	
+	public void sayno() {
+		xhh.sayno();
 	}
 
 	public void sayhello(){

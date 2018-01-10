@@ -5,6 +5,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import com.mry.base.Mry;
+
 public class app {
 
 	public static void main(String[] args)
@@ -13,9 +15,10 @@ public class app {
 		forname();
 	}
 
-	private static void forname() throws ClassNotFoundException, NoSuchMethodException, SecurityException,
-			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		Class<?> clazz = Class.forName("com.mry.reflect.Mry");
+	private static void forname() throws ClassNotFoundException, SecurityException, InstantiationException,
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException {
+		Class<?> clazz = Class.forName("com.mry.base.Mry");
+		// clazz=Mry.class;
 		Constructor<?>[] constructors = clazz.getConstructors();
 		for (Constructor<?> ct : constructors) {
 			System.out.println(ct.getName());
@@ -34,14 +37,20 @@ public class app {
 		for (Field field : fields) {
 			field.setAccessible(true);
 			Object obj = field.get(mry);
-			System.out.println(obj);
+			if(obj!=null) {
+				System.out.println(obj);
+			}
 		}
 		System.out.println("---------属性-----------");
 		for (Field field : fields) {
 			String methodname = "get" + field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
-			Method method = clazz.getDeclaredMethod(methodname, null);
-			Object ss=method.invoke(mry, null);
-			System.out.println(ss);
+			try {
+				Method method = clazz.getDeclaredMethod(methodname, null);
+				Object ss = method.invoke(mry, null);
+				System.out.println(ss);
+			} catch (NoSuchMethodException e) {
+				continue;
+			}
 		}
 	}
 }
