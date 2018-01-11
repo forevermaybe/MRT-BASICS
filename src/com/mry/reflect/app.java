@@ -45,8 +45,8 @@ public class app {
 		for (Field field : fields) {
 			String methodname = "get" + field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
 			try {
-				Method method = clazz.getDeclaredMethod(methodname, null);
-				Object ss = method.invoke(mry, null);
+				Method method = clazz.getDeclaredMethod(methodname, new Class[] {});
+				Object ss = method.invoke(mry, new Object[] {});
 				System.out.println(ss);
 			} catch (NoSuchMethodException e) {
 				continue;
