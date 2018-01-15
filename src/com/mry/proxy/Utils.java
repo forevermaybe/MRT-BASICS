@@ -57,7 +57,7 @@ public class Utils {
 		List<Class<?>> classes = new ArrayList<Class<?>>();
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
 		for (String paceagename : packagenames) {
-			String path = paceagename.replace('.', '/');
+			String path = paceagename.replace(".", "/");
 			Enumeration<URL> urls = loader.getResources(path);
 			List<File> fileList = new ArrayList<File>();
 			while (urls.hasMoreElements()) {
