@@ -8,9 +8,8 @@ public class App {
 		Mry mry = (Mry) Utils.getInstance(Mry.class, new Object[] { "da", "da", "da" });
 		mry.sayno();
 		System.out.println("--------------");
-		ProxyUtils utils = new ProxyUtils();
-		utils.invoke(mry, mry.getClass().getMethod("sayno", new Class[] {}), new Object[] {});
-		System.out.println("--------------");
-		ProxyUtils.domethod(mry, "sayno", args);
+		Proxy pro = new Proxy(new XhhImpl());
+		Xhh xhh = (Xhh) pro.getinstance();
+		xhh.sayno();
 	}
 }
